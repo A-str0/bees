@@ -10,7 +10,12 @@ public class InputManager : MonoBehaviour
     public PlayerControls controls;
     public PlayerControls.PlayerActions playerActions;
 
+    public event System.Action<Vector2> onClick;
+
+    InputAction pos;
     float input;
+
+    public Vector2 GetPointerPos() => Camera.main.ScreenToWorldPoint(pos.ReadValue<Vector2>());
 
     private void Awake() {
         if (Instance == null) Instance = this;
@@ -18,7 +23,12 @@ public class InputManager : MonoBehaviour
 
         controls = new PlayerControls();
         playerActions = controls.Player;
+        controls.Enable();
+        pos = controls.FindAction("Position");
+    }
 
+    private void Start() {
+        playerActions.Click.performed += ctx => onClick?.Invoke(GetPointerPos());
         playerActions.Move.performed += ctx => input = ctx.ReadValue<float>();
         playerActions.Jump.performed += ctx => playerMovement.Jump();
     }
