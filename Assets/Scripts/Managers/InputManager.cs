@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
         if (Instance == null) Instance = this;
         else Debug.LogWarning("InputManager is already instanced");
 
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement_2D>();
         controls = new PlayerControls();
         playerActions = controls.Player;
         controls.Enable();
@@ -31,6 +32,7 @@ public class InputManager : MonoBehaviour
         playerActions.Click.performed += ctx => onClick?.Invoke(GetPointerPos());
         playerActions.Move.performed += ctx => input = ctx.ReadValue<float>();
         playerActions.Jump.performed += ctx => playerMovement.Jump();
+        playerActions.GetOff.performed += ctx => playerMovement.GetOff();
     }
 
     private void Update() {

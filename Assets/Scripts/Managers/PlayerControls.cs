@@ -80,6 +80,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GetOff"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c5ac458-3a8d-415a-a1cf-d8c054fb1948"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -225,6 +234,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Position"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""79266def-25b9-452a-b331-5134007f38ad"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GetOff"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""79d50d7c-58fa-4459-b92a-67bf81f6ea70"",
+                    ""path"": ""<Joystick>/stick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GetOff"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -239,6 +270,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Click = m_Player.FindAction("Click", throwIfNotFound: true);
         m_Player_Position = m_Player.FindAction("Position", throwIfNotFound: true);
+        m_Player_GetOff = m_Player.FindAction("GetOff", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -304,6 +336,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_Click;
     private readonly InputAction m_Player_Position;
+    private readonly InputAction m_Player_GetOff;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -314,6 +347,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @Click => m_Wrapper.m_Player_Click;
         public InputAction @Position => m_Wrapper.m_Player_Position;
+        public InputAction @GetOff => m_Wrapper.m_Player_GetOff;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -341,6 +375,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Position.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPosition;
                 @Position.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPosition;
                 @Position.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPosition;
+                @GetOff.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGetOff;
+                @GetOff.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGetOff;
+                @GetOff.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGetOff;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -363,6 +400,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Position.started += instance.OnPosition;
                 @Position.performed += instance.OnPosition;
                 @Position.canceled += instance.OnPosition;
+                @GetOff.started += instance.OnGetOff;
+                @GetOff.performed += instance.OnGetOff;
+                @GetOff.canceled += instance.OnGetOff;
             }
         }
     }
@@ -375,5 +415,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnClick(InputAction.CallbackContext context);
         void OnPosition(InputAction.CallbackContext context);
+        void OnGetOff(InputAction.CallbackContext context);
     }
 }

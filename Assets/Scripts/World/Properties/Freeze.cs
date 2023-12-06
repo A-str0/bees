@@ -14,12 +14,12 @@ public class Freeze : BaseProperty
         rb.constraints = RigidbodyConstraints2D.FreezePosition;
         rb.freezeRotation = true;
         yield return new WaitForSeconds(time);
-        rb.constraints = RigidbodyConstraints2D.None;
-        rb.freezeRotation = false;
         yield return new WaitForSeconds(0.2f);
         yield return null;
     }
     override public IEnumerator Stop() {
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.freezeRotation = false;
         yield return null;
     }
 }

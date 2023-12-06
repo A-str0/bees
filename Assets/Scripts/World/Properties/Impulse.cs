@@ -11,9 +11,24 @@ public class Impulse : BaseProperty
         rb = transform.GetComponent<Rigidbody2D>();
     }
 
+    private void FixedUpdate() {
+        if (!isStarted) return;
+        rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime);
+        if (rb.velocity.x <= 0.05f && rb.velocity.y <= 0.05f) isStarted = false;
+    }
+
+    bool isStarted = false;
     override public IEnumerator Complete() {
-        rb.AddForce(direction.normalized * 3f * strength * rb.mass, ForceMode2D.Impulse);
-        yield return new WaitForSeconds(0.4f);
+        switch (rb.bodyType) {
+            case RigidbodyType2D.Dynamic:
+                rb.AddForce(direction.normalized * 3f * strength * rb.mass, ForceMode2D.Impulse);
+                break;
+            case RigidbodyType2D.Kinematic:
+                rb.velocity = direction.normalized * 3f * strength * rb.mass;
+                isStarted = true;
+                break;
+        }
+        yield return new WaitForSeconds(1f);
         yield return null;
     }
     override public IEnumerator Stop() {

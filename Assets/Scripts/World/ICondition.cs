@@ -5,4 +5,5 @@ using UnityEngine;
 public interface ICondition
 {
     public abstract event System.Action action;
+    public abstract bool isEndless { get; set; }
 }
