@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start() {
-        TEST(); // УДАЛИТЬ!
+       //TEST(); // УДАЛИТЬ!
     }
 
     public GameObject GetNearestPath(Vector3 pos) {

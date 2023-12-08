@@ -8,6 +8,10 @@ public class Telekenesis : MonoBehaviour
     public Transform selectedObject;
     public GameObject Window;
 
+    void Start()
+    {
+        Window.SetActive(false);
+    }
     void Update()
     {
         var p = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -25,10 +29,17 @@ public class Telekenesis : MonoBehaviour
             else
             {
                 //Time.timeScale = 1f;
-                GetComponent<CameraController>().currentObj = null;
-                selectedObject = null;
+                //
             }
         }     
+    }
+
+    public void Close()
+    {
+        //selectedObject.
+        GetComponent<CameraController>().currentObj = FindObjectOfType<Movement_2D>().transform;
+        selectedObject = null;
+        Window.SetActive(false);
     }
 
 }
