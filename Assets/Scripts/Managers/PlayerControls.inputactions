@@ -33,9 +33,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Shoot",
+                    "name": "GetOff",
                     "type": "Button",
-                    "id": "e04cb06f-8a55-4f35-b75b-7620913a16f5",
+                    "id": "7c5ac458-3a8d-415a-a1cf-d8c054fb1948",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -55,15 +55,6 @@
                     "type": "PassThrough",
                     "id": "cc249a37-a557-461a-8539-f76ac14bbad8",
                     "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "GetOff",
-                    "type": "Button",
-                    "id": "7c5ac458-3a8d-415a-a1cf-d8c054fb1948",
-                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -104,21 +95,43 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "7ac28317-a73c-4282-9c3d-118696cf209d",
-                    "path": "<Gamepad>/rightStick",
+                    "name": "LR",
+                    "id": "21b89e0e-eb5d-4244-898f-49b513013b69",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Aim",
-                    "isComposite": false,
+                    "action": "Move",
+                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "ffcd0517-2e74-4590-9ef3-30a1e8ec848d",
-                    "path": "<Mouse>/position",
+                    "name": "negative",
+                    "id": "73765c3c-2da2-4809-bb55-c65420de1caa",
+                    "path": "<Gamepad>/dpad/left",
                     "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "fa5ca9ad-49b6-439d-825d-3a7469e94ff0",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "7ac28317-a73c-4282-9c3d-118696cf209d",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "Press,Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Aim",
@@ -144,28 +157,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2bdf5d3a-8b43-404f-8ac6-6299ce977257",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "05a53985-7540-473f-b297-5956a8828b52",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -227,7 +218,7 @@
                 {
                     "name": "",
                     "id": "79d50d7c-58fa-4459-b92a-67bf81f6ea70",
-                    "path": "<Joystick>/stick/down",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

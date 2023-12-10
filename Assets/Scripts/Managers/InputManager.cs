@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class InputManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class InputManager : MonoBehaviour
 
     InputAction pos;
     float input;
+    bool isAiming = false;
+    Vector2 aimDir;
 
     public Vector2 GetPointerPos() => Camera.main.ScreenToWorldPoint(pos.ReadValue<Vector2>());
 
@@ -33,10 +36,15 @@ public class InputManager : MonoBehaviour
         playerActions.Move.performed += ctx => input = ctx.ReadValue<float>();
         playerActions.Jump.performed += ctx => playerMovement.Jump();
         playerActions.GetOff.performed += ctx => playerMovement.GetOff();
+        playerActions.Aim.performed += ctx => { 
+            aimDir = ctx.ReadValue<Vector2>(); 
+            isAiming = aimDir != Vector2.zero;
+        };
+        playerActions.Aim.canceled += ctx => playerMovement.Shoot();
     }
 
     private void Update() {
-        playerMovement.ReceiveInput(input);
+        playerMovement.ReceiveInput(input, isAiming, aimDir);
     }
 
     private void OnEnable() {

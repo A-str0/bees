@@ -57,16 +57,15 @@ public class ButtonScript : MonoBehaviour
 
     void Pressed(){
         prevPressedState = isPressed;
-        Debug.Log("Button is pressed!");
-        /*pressedSound.pitch = 1;
-        pressedSound.Play(); */
+        pressedSound.pitch = 2f;
+        pressedSound.Play();
         onPressed.Invoke();
     }
 
     void Released(){
         prevPressedState = isPressed;
-        /*releasedSound.pitch = Random.Range(1.1f, 1.2f);
-        releasedSound.Play();*/ 
+        releasedSound.pitch = Random.Range(1.1f, 1.2f);
+        releasedSound.Play();
         onReleased.Invoke();
     }
 }

@@ -1,5 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,14 +33,8 @@ public class GameManager : MonoBehaviour
     }
 
     private void TEST() {
-        BaseChangable obj =  GameObject.FindGameObjectWithTag("Box").GetComponent<BaseChangable>();
-        ClickOn condom = obj.gameObject.AddComponent<ClickOn>();
-        condom.isEndless = true;
-        obj.SetCondition(condom);
-        obj.AddToQueue(obj.gameObject.AddComponent<ZeroGravity>());
-        Impulse imp = obj.gameObject.AddComponent<Impulse>();
-        imp.direction = Vector2.right; imp.strength = 10f;
-        obj.AddToQueue(imp);
-        obj.AddToQueue(obj.gameObject.AddComponent<Explode>());
+        string[] text = new string[4]{"Привет! Я твоя перчатка Первопроходца!", "Сейчас мы познакомимся со всеми моими возможностями, ты же ведь испытатель, да?", 
+        "Впрочем начнем с малого: Ты можешь программировать предметы!", "Постарайся передвинуть тот энергетический куб, чтобы открыть дверь"};
+        Player.GetComponent<Movement_2D>().StartDialogue(text);
     }
 }

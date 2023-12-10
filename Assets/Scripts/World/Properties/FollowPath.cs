@@ -16,7 +16,8 @@ public class FollowPath : BaseProperty
     override public IEnumerator Complete() {
         path = GameManager.Instance.GetNearestPath(transform.position).GetComponent<PathScript>();
         index = path.GetNearestPointIndex(transform.position);
-        if (Vector3.Distance(transform.position, path.points[index].position) > 0.1f) isFollowing = true;
+        isFollowing = true;
+        //if (Vector3.Distance(transform.position, path.points[index].position) > 0.1f) 
         while (!isReached) yield return null;
         isReached = false;
         yield return null;

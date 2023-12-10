@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class LevelDoorScript : MonoBehaviour
+public class GateScript : MonoBehaviour
 {
     public GameObject door;
     Animator animator;

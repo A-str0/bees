@@ -3,19 +3,22 @@ using UnityEngine.Events;
 
 public class HoneyContainerScript : MonoBehaviour
 {
-    [SerializeField] float maxValue = 1f;
-    [SerializeField] float cur = 0f;
+    [SerializeField] Animator animator;
 
     public UnityEvent onFilled;
     public UnityEvent onEmpty;
 
-    public void Fill(float value) {
-        cur = Mathf.Clamp(cur+value, 0f, maxValue);
-        if (cur == maxValue) onFilled?.Invoke();
+    private void Start() {
+        animator = transform.GetComponent<Animator>();
+    }
+
+    public void Fill() {
+        animator.SetBool("IsFilled", true);
+        onFilled?.Invoke();
     }
 
     public void Empty() {
-        cur = 0;
+        animator.SetBool("IsFilled", false);
         onEmpty?.Invoke();
     }
 }

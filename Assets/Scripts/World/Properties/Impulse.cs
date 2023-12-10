@@ -5,7 +5,7 @@ public class Impulse : BaseProperty
 {
     Rigidbody2D rb; 
     public Vector2 direction = new(1f, 0f);
-    public float strength = 2f;
+    public float strength = 5f;
 
     public void Start() {
         rb = transform.GetComponent<Rigidbody2D>();

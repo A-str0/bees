@@ -13,6 +13,10 @@ public class AnimationController : MonoBehaviour
 
     private void Update() {
         animator.SetBool("IsMoving", controller.IsMoving());
+        animator.SetBool("IsInAir", controller.IsFalling());
+        animator.SetBool("Jump", controller.isJumping);
+        animator.SetBool("IsSliding", controller.IsSliding());
+        animator.SetBool("IsAiming", controller.IsAiming());
         if (controller.GetVelocity().x > 0) {
             spriteRenderer.flipX = false;
         } else if (controller.GetVelocity().x < 0) {
